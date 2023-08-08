@@ -18,13 +18,11 @@ export class AppComponent {
 
   async onPromptKeyPress(event: any) {
     if (event?.key === 'Enter') {
-      console.log(this.formControl.value);
+      const { result } = await this.sendPrompt(String(this.formControl.value));
       this.formControl.setValue('');
       this.formControl.setErrors(null);
 
-      const { result } = await this.sendPrompt(String(this.formControl.value));
-      console.log(result);
-      this.result = result;
+      this.result = JSON.stringify(result);
     }
   }
 
