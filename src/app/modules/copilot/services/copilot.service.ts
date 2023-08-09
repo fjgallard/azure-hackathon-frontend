@@ -15,6 +15,6 @@ export class CopilotService {
 
   sendPrompt(prompt: string) {
     const request = { prompt };
-    return this.http.post(`${this.serverURL}/send-prompt`, request);
+    return this.http.post(`${this.serverURL}/completion`, request);
   }
 }

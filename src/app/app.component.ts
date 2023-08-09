@@ -14,15 +14,21 @@ export class AppComponent {
 
   formControl = new FormControl('', [ Validators.required ]);
 
-  constructor(private copilotService: CopilotService) {}
+  constructor(
+    private copilotService: CopilotService,
+  ) {}
 
   async onPromptKeyPress(event: any) {
     if (event?.key === 'Enter') {
-      const { result } = await this.sendPrompt(String(this.formControl.value));
+      const prompt = String(this.formControl.value);
+      console.log(prompt);
+      const { result } = await this.sendPrompt(prompt);
+      console.log(result);
       this.formControl.setValue('');
       this.formControl.setErrors(null);
 
       this.result = JSON.stringify(result);
+      // this.socketService.emitPrompt(prompt);
     }
   }
 
